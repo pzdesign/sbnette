@@ -1,0 +1,65 @@
+
+  {block content}
+  <section id="novinky">
+  <div class="row">
+  <div class="col-sm-6 pull-left">
+    <a class="btn btn-text pull-left" n:href="Novinky:default" >
+      <i class="fa fa-hand-o-left"></i> Zpět na výpis příspěvků
+    </a>                    
+  </div>                     
+</div>  
+
+ <div class="col-lg-12 np nm text-center">
+
+  <h2 class="background"><span>Fotogalerie</span></h2>       
+
+ 
+   <span n:if="$user->loggedIn" class="page-header text-center create" > 
+   <a class="text-center" n:href="Fotogalerie:upload" ><i class="fa fa-picture-o fa-4x"></i><br>Přidat nové album</a>
+   </span>
+ </div>
+
+
+
+  {if count($albumsNames) > 0}
+
+{foreach $albumsNames as $key3 => $album}
+
+  <div class="col-sm-3 col-md-4">
+  <a n:href="Fotogalerie:show $album"  >
+    <div class="thumbnail">
+   
+    {if count($thumbs[$key3]) > 0} 
+      <img src="{$basePath}/gallery/{$album}/{$thumbs[$key3]}" alt="...">
+      {else}
+        <img src="{$basePath}/img/empty.png" alt="...">
+    
+    {/if}
+
+      <div class="caption">
+        <h3 class="text-center">{$album}</h3>
+
+      </div>
+    </div>
+      </a>
+  </div>
+
+
+  {/foreach}
+
+      {else}
+                          <h2 class="page-header text-center">
+                              Zatím nemám žádné fotky. :(
+                          </h2>
+
+      {/if}
+
+  </section>
+
+  {/block}
+
+
+
+
+
+

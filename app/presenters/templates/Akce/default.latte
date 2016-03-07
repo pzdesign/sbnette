@@ -1,0 +1,47 @@
+{block content}
+<section id="novinky" class="stickyTable">
+<div class="row">
+  <div class="col-sm-6 pull-left">
+    <a class="btn btn-text pull-left" n:href="Novinky:default" >
+      <i class="fa fa-hand-o-left"></i> Zpět na výpis příspěvků
+    </a>                    
+  </div>                     
+</div>     
+
+<div class="row np nm">
+<div class="col-sm-12 np nm">
+  <h2 class="background"><span>Akce</span></h2>                   
+</div> 
+
+
+
+{if count($events) > 0}
+    {foreach $events as $event}
+        <div class="col-xs-12  col-sm-6 col-md-4">
+            <div class="card card-1">
+                <div class="card-image">
+                {if $event->img != null}
+                    <img class="img-responsive" src="{$basePath}/upload/{$event->img}" alt="{$event->title}"> 
+                      {else}     
+                    <img class="img-responsive" src="{$basePath}/upload/jelly.jpg" alt="empty">   
+                     {/if}             
+                </div><!-- card image -->              
+                <div class="card-content text-left">
+                    <span class="card-title text-left"><a n:href="Akce:show $event->slug" >{$event->title|truncate:15}</a></span>
+                    <span class="card-date text-left">{$event->start|date:'%#d.%#b %H:%S'}</span>
+                    <span class="card-body text-justify">{$event->content|truncate:100|noescape}</span>                 
+                </div><!-- card content -->
+            </div>
+        </div>
+    {/foreach}
+    {else}
+                        <h3 class="page-header text-center">
+                            Zatím nikdo nic nenapsal :(
+                        </h3>
+    {/if}
+
+</div>
+</section>
+{/block}
+
+

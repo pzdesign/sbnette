@@ -1,0 +1,183 @@
+@{block content}
+<section id="novinky" class="stickyTable mainpage">
+<div class="row np nm">
+                 <div class="col-sm-12 np nm">
+
+                   <span n:if="$user->loggedIn" class="page-header text-center create" > 
+                   <a class="text-center" n:href="Akce:create" ><i class="fa fa-pencil fa-4x"></i><br>Napsat nový</a>
+                   </span>
+                 </div>
+</div> 
+
+<div class="row np nm">
+<div class="col-sm-12 np nm">
+  <h2 class="background"><span>Vítejte</span></h2>                   
+</div> 
+
+        <div class="col-md-4">
+            <div class="card card-1">
+                <div class="card-image">
+    
+                    <img class="img-responsive" src="{$basePath}/upload/jelly.jpg" alt="empty">   
+         
+                </div><!-- card image -->              
+                <div class="card-content text-left">
+                    <span class="card-title text-left"><a n:href="Novinky:show $welcome->slug" >{$welcome->title|truncate:15}</a></span>
+                    <span class="card-date text-left">{$welcome->created_at|date:'%#d.%#b %H:%S'}</span>
+                    <span class="card-body text-justify">{$welcome->trailer|truncate:150|noescape}</span>                 
+                </div><!-- card content -->
+            </div>
+        </div>
+
+
+{if count($events) > 0}
+    {foreach $events as $event}
+        <div class="col-xs-12  col-sm-6 col-md-4">
+            <div class="card card-1">
+                <div class="card-image">
+                {if $event->img != null}
+                    <img class="img-responsive" src="{$basePath}/upload/{$event->img}" alt="{$event->title}"> 
+                      {else}     
+                    <img class="img-responsive" src="{$basePath}/upload/jelly.jpg" alt="empty">   
+                     {/if}             
+                </div><!-- card image -->              
+                <div class="card-content text-left">
+                    <span class="card-title text-left"><a n:href="Akce:show $event->slug" >{$event->title|truncate:15}</a></span>
+                    <span class="card-date text-left">{$event->start|date:'%#d.%#b %H:%S'}</span>
+                    <span class="card-body text-justify">{$event->trailer|truncate:150|noescape}</span>                 
+                </div><!-- card content -->
+            </div>
+        </div>
+    {/foreach}
+    {else}
+                        <h3 class="page-header text-center">
+                            Zatím nikdo nic nenapsal :(
+                        </h3>
+    {/if}
+<div class="col-xs-12  col-sm-8 col-sm-offset-2">
+  <a href="{link Akce:default}" class="btn btn-link btn-lg" role="button">Zobrazit více akcí</a>
+</div> 
+</div> 
+
+<div class="row np nm">
+<div id="sluzby" class="col-sm-12 np">
+  <h2 class="background"><span>Naše služby</span></h2>                   
+</div> 
+{if count($sluzby) > 0}
+    {foreach $sluzby as $sluzba}
+        <div class="col-md-4">
+            <div class="card card-1">
+                <div class="card-image">
+                {if $sluzba->img != null}
+                    <img class="img-responsive" src="{$basePath}/upload/{$sluzba->img}" alt="{$sluzba->title}"> 
+                      {else}     
+                    <img class="img-responsive" src="{$basePath}/upload/jelly.jpg" alt="empty">   
+                     {/if}             
+                </div><!-- card image -->              
+                <div class="card-content text-left">
+                    <span class="card-title text-left"><a n:href="Novinky:show $sluzba->slug" >{$sluzba->title|truncate:15}</a></span>
+                    <span class="card-body text-justify">{$sluzba->trailer|truncate:220|noescape} </span>               
+                </div><!-- card content -->
+            </div>
+        </div>
+    {/foreach}
+    {else}
+                        <h3 class="page-header text-center">
+                            Zatím nikdo nic nenapsal :(
+                        </h3>
+    {/if}
+</div>
+
+<div class="row np nm">
+<div id="restaurace" class="row np nm">
+ <div class="col-sm-12 np nm">
+  <h2 class="background"><span>Restaurace</span></h2>       
+</div> 
+        <div class="col-md-6">
+            <div class="card card-1">
+            <a href="{link Novinky:listek}">
+                <div class="card-image card-nocontent">
+        <h3 class="card-title">Naše menu</h3>
+                    <img class="img-responsive" src="{$basePath}/img/menu.png" alt="empty">   
+         
+                </div><!-- card image -->              
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card card-1">
+              <a href="{link Novinky:dnesni}">
+                <div class="card-image card-nocontent">
+       <h3 class="card-title">Dnešní nabídka</h3>
+                    <img class="img-responsive" src="{$basePath}/img/serve.jpg" alt="empty">   
+         
+                </div><!-- card image -->              
+                </a>
+            </div>
+        </div>
+
+  </div>
+</div> 
+
+
+
+<div class="row np nm">
+ <div id="portfolio" class="col-sm-12 np nm">
+  <h2 class="background"><span>Z naší fotogalerie</span></h2>       
+</div> 
+<div class="container-fluid">
+  <div class="row">
+  {if count($images) > 0}
+{foreach $images as $keyy => $image}
+
+        <div class="col-xs-6 col-md-4">
+            <div class="card card-1">
+                <a href="{$basePath}/{$albumName}/{$image}" data-lightbox="roadtrip">
+                <div class="card-image">
+                {if $image != null}
+                    <img class="img-responsive" src="{$basePath}/{$albumName}/{$image}" alt="{$image}"> 
+                      {else}     
+                    <img class="img-responsive" src="{$basePath}/upload/jelly.jpg" alt="empty">   
+                     {/if}             
+                </div><!-- card image -->   
+               </a>           
+            </div>
+        </div>
+
+  {/foreach}
+
+      {else}
+    <p class="page-header text-center">
+        Zatím nemám žádné fotky. :(
+    </p>
+      {/if}
+
+    </div>
+  </div>
+</div>
+
+<div class="row np nm">
+ <div class="col-sm-12 np nm">
+  <h2 class="background"><span>Otevírací hodiny</span></h2>       
+</div>     
+<p class="text-center oteviraci-hodiny">
+Pátek a Sobota<br>
+11:00  do  23:00<br>
+<br>
+Nedele<br>
+11:00  do  21:00<br>
+<br>
+Streda<br>
+17.00  do  21.00<br>
+(pouze studená kuchyne)<br>
+<br>
+<span class="text-danger">Pondelí, Úterý, Ctvrtek<br>ZAVRENO</span>
+
+</p>
+</div>
+
+
+</section>
+{/block}
+

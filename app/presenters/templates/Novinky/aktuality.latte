@@ -1,0 +1,57 @@
+{block content}
+<section id="novinky" class="stickyTable">
+<div class="row">
+  <div class="col-sm-6 pull-left">
+    <a class="btn btn-text pull-left" n:href="Novinky:default" >
+      <i class="fa fa-hand-o-left"></i> Zpět na výpis příspěvků
+    </a>                    
+  </div>                     
+</div>     
+
+<div class="row">
+                 <div class="col-lg-12">
+                    <h2 class="page-header text-center">
+                        Akce
+                    </h2>
+                    <hr>
+                 </div>
+</div> 
+
+<div class="col-sm-12">
+
+{if count($posts) > 0}
+    {foreach $posts as $post}
+
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading aktuality">
+                            <h3><a n:href="Novinky:show $post->id" >{$post->title|truncate:40}</a></h3>
+                                 {if $post->pin}
+                                 <img src="{$basePath}/img/thumbtack-pushpin-2-th.png" alt='Thumbtack/pushpin 2 clip art'/>
+                                 {/if}
+
+                        </div>
+                        <div class="panel-body">
+                        <p class="date text-muted">{$post->created_at|date:'j.m.Y'}</p>
+
+                            <p>{$post->content|truncate:120|noescape}</p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+    {/foreach}
+      {else}
+    <p class="page-header text-center">
+        Zatím nemám žádné fotky. :(
+    </p>
+      {/if}
+
+</div>
+</section>
+{/block}
+
+

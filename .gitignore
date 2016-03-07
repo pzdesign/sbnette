@@ -1,0 +1,7 @@
+app/config/config.local.neon
+app/config/config.neon
+vendor
+www
+temp
+log
+design

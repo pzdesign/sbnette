@@ -1,0 +1,242 @@
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="author" content="PZ-Design | www.patrik-zizka.cz">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+        <meta name="description" content="">    
+        <meta name="keywords" content="">
+    	<meta name="robots" content="index,follow">
+    	<title>{ifset title}{include title|striptags} | {/ifset}Vítejte - v naší školce</title>
+        <link rel="shortcut icon" href="{$basePath}/img/favicon.ico" type="image/x-icon">
+        <!-- Bootstrap Core CSS -->
+        <link href="{$basePath}/css/bootstrap.min.css" rel="stylesheet">
+
+        <link href="{$basePath}/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="{$basePath}/css/animate.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css">
+         <!-- Custom CSS -->
+        <link href="{$basePath}/css/style.css" rel="stylesheet">
+
+        <link href="{$basePath}/css/lightbox.css" rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="{$basePath}/css/sweetalert.css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    {block head}{/block}
+
+    </head>
+
+    <body>
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-fixed-top affix-top" role="navigation">
+        <div class="container-nav">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Statek Benátky <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a n:href="Novinky: ">Úvod</a>
+                            </li>                        
+                            <li>
+                                <a n:href="Novinky:novinky">Novinky</a>
+                            </li>
+                            <li>
+                                <a n:href="Akce:default ">Akce</a>
+                            </li>
+                            <li>
+                                <a n:href="Klub:default ">Služby</a>
+                            </li>                                                        
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Restaurace <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a n:href="Novinky:show 6 ">Denní nabídka</a>
+                            </li>                        
+                            <li>
+                                <a n:href="Novinky:show 5 ">Jídelní lístek</a>
+                            </li>
+                        </ul>
+                    </li>                    
+                        <li>
+                            <a n:href="Onas:default">O nás</a>
+                        </li>
+                        <li >
+                        <a n:href="Fotogalerie:alba ">Fotogalerie</a>
+                        </li>
+                        <li >
+                            <a n:href="Program:default">Ubytování</a>
+                        </li>
+                        <li>
+                            <a n:href="Kontakt:default">Kontakty</a>
+                        </li>
+
+
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container -->
+        </nav> 
+    <div  class="wrapper-green">
+
+    
+        <!-- Header Carousel -->
+        <header>
+<div class="header-content">
+                <img src="{$basePath}/img/logo.png" class="img-responsive img-centered img-logo" alt="Responsive image">
+                <img src="{$basePath}/img/logo-bg.png" class="img-responsive img-centered img-logo-bg" alt="Responsive image">
+            <div class="header-content-inner text-center animated fadeIn" n:if="($presenter->name == 'Novinky' && $presenter->action == 'default')">
+                <h1>Statek benátky</h1>
+                <hr>
+                <p >Místo kde vám bude dobře</p>
+                
+            </div>
+</div>
+
+
+
+        </header>           
+    </div>
+
+
+    <div class="wrapper">
+
+  <div n:foreach="$flashes as $flash" n:class="alert,alert-dismissible,flash, $flash->type,animated,fadeInDown">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  {$flash->message}
+  </div>
+
+        <!-- Page Content -->
+            <!-- Marketing Icons Section -->
+
+    {if $presenter->name == 'Novinky' && $presenter->action == 'default'}
+    <div class="wrapper-content">
+    {else}
+    <div class="wrapper-content-move">
+    {/if}
+
+        <div class="container ">        
+            <div class="row ">
+                <div class="col-lg-12">
+                     {include content}
+                </div>
+            </div>
+        </div>       
+    </div>
+
+ 
+        <div class="col-md-12">               
+            <footer> 
+                    <div class="col-lg-12 text-center">
+                        <p>Copyright &copy; Statek-Benatky.cz 2016 | <a class="link" href="http://patrik-zizka.cz" target="_blank">Vytvořilo studio PZ-Design</a></p>
+<ul class="navig">
+    {if $user->loggedIn}
+        <li><a n:href="Sign:out">Odhlásit</a>&nbsp;&nbsp;|&nbsp;&nbsp;  <a n:href="Admin:default">Admin</a>  </li>
+    {else}
+        <li><a n:href="Sign:in">Přihlásit</a></li>
+    {/if}
+</ul>
+                    </div>
+            
+            </footer>
+        </div>
+ 
+
+
+
+     <!-- /.wrapper -->
+
+     	{block scripts}
+         <!-- jQuery -->
+    <script src="{$basePath}/js/jquery.js" n:syntax="off"></script>
+ 
+    <!-- TINY MCE -->
+    <script src="{$basePath}/js/tinymce/tinymce.min.js " n:syntax="off"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{$basePath}/js/bootstrap.min.js" n:syntax="off"></script>
+    <!-- sweet alert -->
+    <script src="{$basePath}/js/sweetalert.min.js"></script>
+
+    <!-- LIGHT BOX -->
+    <script src="{$basePath}/js/lightbox.js" n:syntax="off"></script>
+
+    <!-- PARTICLES -->
+    <script src="{$basePath}/js/wow.min.js" n:syntax="off"></script>
+
+    <!-- AJAX core -->
+    <script src="{$basePath}/js/ajax.js" n:syntax="off"></script>
+
+    <!-- NETTE AJAX core + ext -->
+    <script src="{$basePath}/js/nette-ajax/nette.ajax.js" n:syntax="off"></script>
+    <script src="{$basePath}/js/nette-ajax/extensions/confirm.ajax.js" n:syntax="off"></script>
+
+    <!-- APP EXAMPLE -->
+    <script src="{$basePath}/js/nette-ajax/example.js" n:syntax="off"></script>
+    <script src="{$basePath}/js/confirm.js" n:syntax="off"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment-with-locales.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+  <script type="text/javascript">
+    <!-- <![CDATA[
+    $(document).ready(function()
+    {
+      $('.datetimepicker').datetimepicker(
+      {
+        locale: 'cs',  // en
+        format: 'DD.MM.YYYY H:mm'  // MM/DD/YYYY H:mm
+      });
+    });
+    //]]> -->
+  </script>
+
+
+    <script>
+
+
+$(document).on("click", 'a.confirm', function() {
+  if (confirm($(this).data('confirm'))) {
+ location.href = $(this).attr('href');   
+  }
+  return false;
+
+/*
+
+  if (confirm('Are you sure?')) {
+ location.href = $(this).attr('href');   
+  }
+  return false;
+  */
+
+});
+
+
+    </script>
+    {/block}
+    </div>
+    </body>
+
+    </html>
+

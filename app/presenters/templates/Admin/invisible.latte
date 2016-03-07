@@ -1,0 +1,189 @@
+{block content}
+<section id="novinky"  class="stickyTable">
+                   <span class="text-right" >
+                   <p><a class="btn btn-text pull-left" n:href="Novinky:default" ><i class="fa fa-hand-o-left"></i> Zpět na úvod</a></p>
+                   <a class="style pull-right" n:href="Admin:default" ><i class="fa fa-th-large fa-2x "></i></a>
+                   <a class="style pull-right" n:href="Admin:small" ><i class="fa fa-th fa-2x "></i></a>
+                   <a class="style pull-right" n:href="Admin:list" ><i class="fa fa-bars fa-2x"></i></a>
+
+                   <a class="style pull-right" n:href="Admin:invisible" ><i class="fa fa-eye-slash fa-2x"></i></a>            
+                   <a class="style pull-right" n:href="Admin:visible" ><i class="fa fa-eye fa-2x"></i></a>
+
+                   <a class="style pull-right" n:href="Admin:pin" ><i class="fa fa-thumb-tack fa-2x"></i></a>
+                   <a class="style pull-right" n:href="Admin:default" ><i class="fa fa-times fa-2x"></i></a>
+
+                   </span>
+
+<div class="row">
+
+
+
+                 <div class="col-lg-12">
+                    <h2 class="page-header text-center">
+                    Novinky
+                    </h2>
+                 </div>
+
+
+<div class="col-sm-12">
+
+{if count($novinky) > 0}
+    {foreach $novinky as $novinka}
+{if !$novinka->publish}
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3><a n:href="Novinky:edit $novinka->id" >{$novinka->title|truncate:100}</a>
+                                {if $novinka->pin} <img src="{$basePath}/img/thumbtack-pushpin-2-th.png" alt='Thumbtack/pushpin 2 clip art'/>{/if}
+                                 <span class="pull-right">{if $novinka->publish}  <i class="fa fa-eye"></i> {else} <i class="fa fa-eye-slash"></i>{/if}</span>                            
+                            </h3>
+                        </div>
+                        <div class="panel-body">
+                        <p class="date text-muted">{$novinka->created_at|date:'j.m.Y'}</p>
+
+                            <p>{$novinka->content|truncate:300|noescape}</p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+{/if}
+    {/foreach}
+    {else}
+                        <h3 class="page-header text-center">
+                            Zatím nikdo nic nenapsal :(
+                        </h3>
+
+    {/if}
+
+    </div>
+</div>
+<div class="row">
+
+                 <div class="col-lg-12">
+                    <h3 class="page-header text-center">
+                    Aktuality
+                    </h3>
+                 </div>
+
+
+<div class="col-sm-12">
+
+{if count($aktuality) > 0}
+    {foreach $aktuality as $aktualita}
+{if !$aktualita->publish}
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading aktuality">
+                            <h3><a n:href="Novinky:edit $aktualita->id" >{$aktualita->title|truncate:100}</a>
+                                 {if $aktualita->pin} <img src="{$basePath}/img/thumbtack-pushpin-2-th.png" alt='Thumbtack/pushpin 2 clip art'/>{/if}
+                                 <span class="pull-right">{if $aktualita->publish}  <i class="fa fa-eye"></i> {else} <i class="fa fa-eye-slash"></i>{/if}</span>
+                            </h3>
+                        </div>
+                        <div class="panel-body">
+                        <p class="date text-muted">{$aktualita->created_at|date:'j.m.Y'}</p>
+
+                            <p>{$aktualita->content|truncate:300|noescape}</p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+{/if}
+    {/foreach}
+    {else}
+                        <h3 class="page-header text-center">
+                            Zatím nikdo nic nenapsal :(
+                        </h3>
+
+    {/if}
+
+    </div>
+   </div>
+<div class="row">   
+                 <div class="col-lg-12">
+                    <h3 class="page-header text-center">
+                    Klub Rodičů
+                    </h3>
+                 </div>
+
+
+<div class="col-sm-12">
+
+{if count($klub) > 0}
+    {foreach $klub as $klubItem}
+{if !$klubItem->publish}
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading klub">
+                            <h3><a n:href="Novinky:edit $klubItem->id" >{$klubItem->title|truncate:100}</a>
+                                 {if $klubItem->pin} <img src="{$basePath}/img/thumbtack-pushpin-2-th.png" alt='Thumbtack/pushpin 2 clip art'/>{/if}
+                                 <span class="pull-right">{if $klubItem->publish}  <i class="fa fa-eye"></i> {else} <i class="fa fa-eye-slash"></i>{/if}</span>
+                            </h3>
+                        </div>
+                        <div class="panel-body">
+                        <p class="date text-muted">{$klubItem->created_at|date:'j.m.Y'}</p>
+
+                            <p>{$klubItem->content|truncate:300|noescape}</p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+{/if}
+    {/foreach}
+    {else}
+                        <h3 class="page-header text-center">
+                            Zatím nikdo nic nenapsal :(
+                        </h3>
+
+    {/if}
+   </div>
+    </div>
+<div class="row">
+                 <div class="col-lg-12">
+                    <h3 class="page-header text-center">
+                    Hlavní Stránky <br>( nelze odstranit )
+                    </h3>
+                 </div>
+
+
+
+<div class="col-sm-12">
+
+{if count($ostatni) > 0}
+    {foreach $ostatni as $ostatniItem}
+
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading ostatni">
+                            <h3><a n:href="Novinky:edit $ostatniItem->id" >{$ostatniItem->title|truncate:40}</a>
+                            </h3>                       
+                        </div>
+                    </div>
+
+                </div>
+
+
+    {/foreach}
+    {else}
+                        <h3 class="page-header text-center">
+                            Zatím nikdo nic nenapsal :(
+                        </h3>
+
+    {/if}
+
+</div>
+</div>
+</div>
+
+</section>
+{/block}
+
+

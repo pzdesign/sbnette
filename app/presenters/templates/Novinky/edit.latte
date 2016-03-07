@@ -1,0 +1,43 @@
+{block content}
+<div class="row">
+  <div class="col-sm-6 pull-left">
+    <a class="btn btn-text pull-left" n:href="Novinky:default" >
+      <i class="fa fa-hand-o-left"></i> Zpět na výpis příspěvků
+    </a>                    
+  </div>
+  <div class="col-sm-6 pull-right text-right">
+    {if !in_array($idPrispevku, $bans)}
+
+    <a n:if="$user->loggedIn"  class=" btn btn-danger text-center confirm"  n:href="delete $post->id" onclick="deleteItem()" >
+      <i class="fa fa-times fa-1x"></i> Odstranit
+    </a>
+
+    {else}
+
+    <span disabled  n:if="$user->loggedIn"  class=" btn btn-danger text-center" >
+    <i class="fa fa-times fa-1x"></i> Odstranit
+    </span>
+
+    {/if}                    
+  </div>                     
+</div>  
+<section id="novinky">
+
+<div class="row">
+                 <div class="col-lg-12">
+                    <h2 class="page-header text-center">
+                       Upravit příspěvek
+                    </h2>
+                    <hr>
+                 </div>
+</div>
+<div class="col-sm-12">
+{control postForm}
+    </div>
+
+
+
+ </section>
+{/block}
+
+

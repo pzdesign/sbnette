@@ -1,0 +1,56 @@
+{block content}
+
+<div class="row">
+  <div class="col-sm-6 pull-left">
+    <a class="btn btn-text pull-left" n:href="Akce:default" >
+      <i class="fa fa-hand-o-left"></i> Zpět na výpis příspěvků
+    </a>                    
+  </div>
+  <div class="col-sm-6 pull-right text-right">
+    <a n:if="$user->loggedIn"  class="ajax btn btn-warning text-center" n:href="Akce:edit $event->slug" >
+      <i class="fa fa-pencil fa-1x"></i> Upravit
+    </a>
+
+
+
+    <a n:if="$user->loggedIn"  class=" btn btn-danger text-center confirm"  n:href="Akce:delete $event->slug" onclick="deleteItem()" >
+      <i class="fa fa-times fa-1x"></i> Odstranit
+    </a>
+
+
+                   
+  </div>                     
+</div>     
+
+<section id="novinky">
+<div class="row">
+ <div class="col-sm-12 np nm">
+  <h2 class="background"><span>{$event->title}</span></h2>       
+</div> 
+                 <div class="col-md-8 col-sm-offset-2">
+
+                <div class="date text-center"><br>
+                <h3>{$event->start|date:'j.m.Y H:i '}</h3>
+                <br>
+                až
+                <br><br>
+                <h3>{$event->end|date:'j.m.Y H:i '}</h3>
+                <br><br>
+                </div>
+                 </div>
+                 {if $event->img != null}
+    <div class="col-sm-8 col-sm-offset-2 akce-wrap-img ">
+ 
+      <img class="akce-img" src="{$basePath}/upload/{$event->img}" alt="{$event->title}" >
+    </div>
+     {/if}           
+
+  <div class="col-md-8 col-sm-offset-2">
+     <p>{$event->content|noescape}</p>
+  </div>
+
+</section>
+
+
+{/block}
+

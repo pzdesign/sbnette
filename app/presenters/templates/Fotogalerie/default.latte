@@ -1,0 +1,37 @@
+
+
+  @{block content}
+  <section id="novinky">
+
+                   <div class="col-lg-12">
+                      <h1 class="page-header text-center">
+                          Fotogalerie
+                      </h1>
+
+                     <h3 n:if="$user->loggedIn" class="page-header text-center" > <a class="text-center" n:href="Fotogalerie:upload" ><i class="fa fa-camera fa-4x"></i><br>Přidat nové album</a></h3>
+                   </div>
+  <div class="row">
+  {if count($albums) > 0}
+{foreach $albums as $album}
+
+<div class="col-md-4">
+    <a n:href="Fotogalerie:show $album" class="thumbnail text-center">
+    <i class="fa fa-folder-o fa-4x"><br>{$album}</i>
+    </a>
+</div>
+
+
+
+
+  {/foreach}
+
+      {else}
+                          <h2 class="page-header text-center">
+                              Zatím nemám žádné fotky. :(
+                          </h2>
+
+      {/if}
+                  </div>
+  </section>
+  {/block}
+

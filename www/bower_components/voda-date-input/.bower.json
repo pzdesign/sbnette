@@ -1,0 +1,41 @@
+{
+  "name": "voda-date-input",
+  "main": [
+    "dateInput.js",
+    "dateInput.css"
+  ],
+  "homepage": "https://github.com/voda/DateInput",
+  "authors": [
+    "Ondřej Vodáček <ondrej.vodacek@gmail.com>"
+  ],
+  "description": "HTML 5 compatible date / time input field for Nette.",
+  "keywords": [
+    "date",
+    "form",
+    "calendar",
+    "input",
+    "nette"
+  ],
+  "license": "BSD-3-Clause",
+  "ignore": [
+    "**/.*",
+    "src",
+    "tests",
+    "changeNetteVersion.sh",
+    "composer.json"
+  ],
+  "dependencies": {
+    "jqueryui-timepicker-addon": ">=1.1.0"
+  },
+  "version": "1.0.8",
+  "_release": "1.0.8",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.0.8",
+    "commit": "817cb1e8d29ade6b3b311fa4ed9bfba6c1f451f2"
+  },
+  "_source": "git://github.com/voda/DateInput.git",
+  "_target": "~1.0.8",
+  "_originalSource": "voda-date-input",
+  "_direct": true
+}

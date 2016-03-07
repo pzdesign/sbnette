@@ -1,7 +1,7 @@
 app/config/config.local.neon
 app/config/config.neon
 vendor
-www
+www/gallery
 temp
 log
 design

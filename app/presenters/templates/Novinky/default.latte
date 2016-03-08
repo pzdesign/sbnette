@@ -23,7 +23,9 @@
                 </div><!-- card image -->              
                 <div class="card-content text-left">
                     <span class="card-title text-left"><a n:href="Novinky:show $welcome->slug" >{$welcome->title|truncate:15}</a></span>
-                    <span class="card-date text-left">{$welcome->created_at|date:'%#d.%#b %H:%S'}</span>
+                    {var $datum = StrFTime("%b", Time());
+echo($datum);}
+                    <span class="card-date text-left">{$welcome->created_at|date:'M'} {$datum}</span>
                     <span class="card-body text-justify">{$welcome->trailer|truncate:150|noescape}</span>                 
                 </div><!-- card content -->
             </div>
@@ -32,7 +34,7 @@
 
 {if count($events) > 0}
     {foreach $events as $event}
-        <div class="col-xs-12  col-sm-6 col-md-4">
+        <div class="col-xs-12  col-sm-8 col-md-8">
             <div class="card card-1">
                 <div class="card-image">
                 {if $event->img != null}
@@ -42,7 +44,7 @@
                      {/if}             
                 </div><!-- card image -->              
                 <div class="card-content text-left">
-                    <span class="card-title text-left"><a n:href="Akce:show $event->slug" >{$event->title|truncate:15}</a></span>
+                    <span class="card-title text-left"><a n:href="Akce:show $event->slug" >{$event->title|truncate:50}</a></span>
                     <span class="card-date text-left">{$event->start|date:'%#d.%#b %H:%S'}</span>
                     <span class="card-body text-justify">{$event->trailer|truncate:150|noescape}</span>                 
                 </div><!-- card content -->
@@ -55,7 +57,7 @@
                         </h3>
     {/if}
 <div class="col-xs-12  col-sm-8 col-sm-offset-2">
-  <a href="{link Akce:default}" class="btn btn-link btn-lg" role="button">Zobrazit více akcí</a>
+  <a n:href="Akce:default" class="btn btn-link btn-lg" role="button">Zobrazit více akcí</a>
 </div> 
 </div> 
 

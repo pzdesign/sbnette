@@ -35,14 +35,26 @@ class NovinkyPresenter extends Nette\Application\UI\Presenter
         /*      Klub = Služby         */
         $welcome = $this->database->table('posts')->get(7);
         $this->template->welcome = $welcome;
-        $this->template->events = $this->database->table('events')->order('start ASC')->limit(2)->where('pin', 1)->where('publish = ?', 1);
+        $this->template->events = $this->database->table('events')->order('start ASC')->limit(1)->where('pin', 1)->where('publish = ?', 1);
         $this->template->sluzby = $this->database->table('posts')
         ->order('id ASC')->limit(3)->where('pin', 1)
         ->where('publish = ?', 1)->where('category = ?', 'Klub');
 
 
     }
+/**
+ * České formátování data.
+ * @param  int  timestamp
+ * @return string
+ */
+function czechDateHelper($value)
+{
+        return date('j. n. Y', $value);
+}
 
+// nyní lze helper volat jako $template->date(...) 
+// 
+// 
 
     public function beforeRender()
     {

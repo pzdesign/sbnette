@@ -16,6 +16,11 @@ use Nette,
     $form[$name] = new \Nette\Forms\Controls\MultiUploadControl($label);
     return $form[$name];
 });
+
+
+
+
+
 class FotogaleriePresenter extends Nette\Application\UI\Presenter
 {
     /** @var Nette\Database\Context */
@@ -369,10 +374,15 @@ else
             if($this->checkImg($imgUrl)){
 
             $img->move($imgUrl);
-                $image = Image::fromFile($imgUrl);
-                $image->resize(1280, 720, Image::SHRINK_ONLY);
-                $image->sharpen();
-                $image->save($imgUrl,80, Image::JPEG);
+
+            $size    = new \Imagine\Image\Box(1024, 768);
+            $mode    = \Imagine\Image\ImageInterface::THUMBNAIL_INSET;
+
+                $image = new \Imagine\Gd\Imagine();
+                $image->open($imgUrl)
+                ->thumbnail($size,$mode)
+                ->save($imgUrl);
+                //->resize(1280, 720, Image::FILL)
                 $this->flashMessage('Foto '. $img.'bylo nahráno.', 'alert-success'); 
             }
             else{
